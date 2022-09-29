@@ -36,7 +36,7 @@
               return {
                 method: data.method,
                 url: data.url,
-                fields: data.fields,
+                fields: data.fields, // For presigned PUT uploads, this should be left empty.
                 // Provide content type header required by S3
                 headers: {
                   'Content-Type': file.type,
@@ -51,8 +51,7 @@
       })
 
       uppy.on('upload-success', (file, data) => {
-        const s3Key = file.meta['key'] // the S3 object key of the uploaded file
-        console.log(file);
+        console.log('Upload success! We’ve uploaded this file:', file.meta['name'])
       })
     </script>
   </body>
